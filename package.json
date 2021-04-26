@@ -1,18 +1,18 @@
 {
-  "name": "terra-model-repo",
+  "name": "mega-app-2",
   "version": "1.0.0",
   "description": "A model repo for how terra applications should look",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mjhenkes/terra-model-repo.git"
+    "url": "git+https://github.com/mjhenkes/mega-app-2.git"
   },
   "author": "",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/mjhenkes/terra-model-repo/issues"
+    "url": "https://github.com/mjhenkes/mega-app-2/issues"
   },
-  "homepage": "https://github.com/mjhenkes/terra-model-repo#readme",
+  "homepage": "https://github.com/mjhenkes/mega-app-2#readme",
   "eslintConfig": {
     "extends": "@cerner/terra"
   },
@@ -45,6 +45,7 @@
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-intl": "^5.13.2",
+    "react-router-dom": "^5.2.0",
     "terra-button": "^3.53.0",
     "terra-collapsible-menu-view": "^6.48.0",
     "terra-icon": "^3.41.0",

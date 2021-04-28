@@ -14,9 +14,9 @@ const terraApplicationConfig = (env = {}) => ({
   plugins: [
     new ModuleFederationPlugin({
       name: 'mega-app-2',
-      remotes: {
-        organizer: 'organizer@http://localhost:8081/OrganizerPages.js',
-      },
+      // remotes: {
+      //   organizer: 'organizer@http://localhost:8081/OrganizerPages.js',
+      // },
       shared: {
         react: {
           singleton: true,

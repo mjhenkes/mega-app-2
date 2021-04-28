@@ -1,0 +1,42 @@
+{
+  "MyDay": {
+    "url": "http://localhost:8081/OrganizerPages.js",
+    "scope": "organizer",
+    "module": "./PatientList"
+  },
+  "PatientSearch": {
+    "url": "http://localhost:8081/OrganizerPages.js",
+    "scope": "organizer",
+    "module": "./PatientSearch"
+  },
+  "ChartReview": {
+    "url": "http://localhost:8081/OrganizerPages.js",
+    "scope": "organizer",
+    "module": "./PatientSearch"
+  },
+  "Handoff": {
+    "url": "http://localhost:8081/OrganizerPages.js",
+    "scope": "organizer",
+    "module": "./PatientSearch"
+  },
+  "ActiveOrders": {
+    "url": "http://localhost:8081/OrganizerPages.js",
+    "scope": "organizer",
+    "module": "./PatientSearch"
+  },
+  "InactiveOrders": {
+    "url": "http://localhost:8081/OrganizerPages.js",
+    "scope": "organizer",
+    "module": "./PatientSearch"
+  },
+  "NoteTemplates": {
+    "url": "http://localhost:8081/OrganizerPages.js",
+    "scope": "organizer",
+    "module": "./PatientSearch"
+  },
+  "InProgressNotes": {
+    "url": "http://localhost:8081/OrganizerPages.js",
+    "scope": "organizer",
+    "module": "./PatientSearch"
+  }
+}

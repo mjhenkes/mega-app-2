@@ -1,0 +1,1 @@
+(self.webpackChunkmega_app_2=self.webpackChunkmega_app_2||[]).push([[750],{70750:(e,a,t)=>{"use strict";var u=t(95318);Object.defineProperty(a,"__esModule",{value:!0}),Object.defineProperty(a,"NavigationItem",{enumerable:!0,get:function(){return r.default}}),a.default=void 0;var r=u(t(65940)),f=u(t(42305)).default;a.default=f}}]);

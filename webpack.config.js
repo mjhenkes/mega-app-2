@@ -27,12 +27,12 @@ const terraApplicationConfig = (env = {}) => ({
         '@cerner/terra-application': {
           singleton: true,
           version: '2.1',
-          requiredVersion: '^2',
+          requiredVersion: '^2.0',
         },
         '@cerner/terra-application/': {
           singleton: true,
           version: '2.1',
-          requiredVersion: '^2',
+          requiredVersion: '^2.0',
         },
         'react-router-dom': {
           singleton: true,

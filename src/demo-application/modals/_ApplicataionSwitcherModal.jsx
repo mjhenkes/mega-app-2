@@ -18,7 +18,8 @@ const propTypes = {
 const ApplicationSwitcherModal = ({ onRequestClose }) => {
   const applicationContext = React.useContext(ApplicationContext);
   const history = useHistory();
-  const hrefPrefix = '/mega-app-2/#/';
+  // const hrefPrefix = '/mega-app-2/#/';
+  const hrefPrefix = '/#/';
   return (
     <ApplicationModal
       title="Application Switcher"
@@ -27,7 +28,7 @@ const ApplicationSwitcherModal = ({ onRequestClose }) => {
       <List dividerStyle="bottom-only" paddingStyle="standard">
         {Object.values(applicationContext.applications).filter(app => applicationContext.current.id !== app.id).map(app => (
           <Item key={app.id}>
-            <Hyperlink
+            {/* <Hyperlink
               href={`${hrefPrefix}${app.route}`}
               style={{ padding: '.5rem' }}
               onClick={() => {
@@ -35,7 +36,7 @@ const ApplicationSwitcherModal = ({ onRequestClose }) => {
               }}
             >
               {app.title}
-            </Hyperlink>
+            </Hyperlink> */}
             <Hyperlink
               href={`${hrefPrefix}${app.route}`}
               style={{ padding: '.5rem' }}
@@ -46,17 +47,15 @@ const ApplicationSwitcherModal = ({ onRequestClose }) => {
                 return false;
               }}
             >
-              SPA Hyperlink
+              {app.title}
             </Hyperlink>
             <Hyperlink
               href={`${hrefPrefix}${app.route}`}
               variant="external"
               target="_blank"
               style={{ padding: '.5rem' }}
-            >
-              New Tab
-            </Hyperlink>
-            <Hyperlink
+            />
+            {/* <Hyperlink
               href={`${hrefPrefix}${app.route}`}
               variant="external"
               target="chart"
@@ -64,7 +63,7 @@ const ApplicationSwitcherModal = ({ onRequestClose }) => {
               style={{ padding: '.5rem' }}
             >
               New Tab same target
-            </Hyperlink>
+            </Hyperlink> */}
           </Item>
         ))}
       </List>

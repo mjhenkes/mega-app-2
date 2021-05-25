@@ -1,17 +1,19 @@
 import React from 'react';
 import IconSearch from 'terra-icon/lib/icon/IconSearch';
+import IconGlasses from 'terra-icon/lib/icon/IconGlasses';
 import IconTile from 'terra-icon/lib/icon/IconTile';
 import Button from 'terra-button';
 import DemographicsBanner from 'terra-demographics-banner';
 
 import ApplicationModal from '@cerner/terra-application/lib/application-modal/ApplicationModal';
-import PrimaryNavigationLayout, { NavigationItem } from '@cerner/terra-application/lib/primary-navigation-layout';
+import PrimaryNavigationLayout from '@cerner/terra-application/lib/primary-navigation-layout';
 import ApplicationConceptProvider from '@cerner/terra-application/lib/application-container/ApplicationConceptProvider';
 import ModalManager from '@cerner/terra-application/lib/modal-manager';
 import classNamesBind from 'classnames/bind';
 import { ConceptContext } from '../providers/ConceptProvider';
 import { ApplicationContext } from '../providers/ApplicationProvider';
-import ApplicationSwitcherModal from '../modals/_ApplicataionSwitcherModal';
+import ApplicationSwitcherModal from '../modals/_ApplicationSwitcherModal';
+import ModuleOverrideModal from '../modals/_ModuleOverrideModal';
 
 import NavLayout from './NavCLayout';
 
@@ -25,10 +27,10 @@ const DemoApplicationNavigationLayout = () => {
 
   console.log(applicationContext);
 
-  const [navigationState, setNavigationState] = React.useState('nav-A');
-  const [showSearchModal, setShowSearchModal] = React.useState(false);
-  const [showDetailsModal, setShowDetailsModal] = React.useState(false);
+  // const [showSearchModal, setShowSearchModal] = React.useState(false);
+  // const [showDetailsModal, setShowDetailsModal] = React.useState(false);
   const [showAppSwitcherModal, setShowAppSwitcherModal] = React.useState(false);
+  const [showModuleOverrideModal, setShowModuleOverrideModal] = React.useState(false);
 
   const render = () => {
     if (applicationContext.current.requiresPatientContext && !conceptContext.data) {
@@ -74,17 +76,17 @@ const DemoApplicationNavigationLayout = () => {
           <PrimaryNavigationLayout
             id="demo-application"
             extensionItems={[{
-              key: 'search',
-              icon: <IconSearch />,
-              text: 'Search',
+              key: 'moduleOverride',
+              icon: <IconGlasses />,
+              text: 'Module Override',
             }, {
               key: 'appSwitch',
               icon: <IconTile />,
               text: 'Application Switcher',
             }]}
             onSelectExtensionItem={(itemKey) => {
-              if (itemKey === 'search') {
-                setShowSearchModal(true);
+              if (itemKey === 'moduleOverride') {
+                setShowModuleOverrideModal(true);
               }
               if (itemKey === 'appSwitch') {
                 setShowAppSwitcherModal(true);
@@ -100,22 +102,20 @@ const DemoApplicationNavigationLayout = () => {
               }
             }}
             onSelectHelp={() => {}}
-            // activeNavigationKey={conceptContext.data ? navigationState : undefined}
-            // onSelectNavigationItem={(key) => { setNavigationState(key); }}
             renderNavigationFallback={() => <div>404</div>}
             {...render()}
 
           />
         </ModalManager>
-        {showDetailsModal && (
+        {/* {showDetailsModal && (
           <ApplicationModal title="Concept Details" size="small" onRequestClose={() => { setShowDetailsModal(false); }}>
             <div style={{ padding: '1rem' }}>
               <p>Details go here.</p>
             </div>
           </ApplicationModal>
-        )}
+        )} */}
       </ApplicationConceptProvider>
-      {showSearchModal && (
+      {/* {showSearchModal && (
         <ApplicationModal title="Search" size="large" onRequestClose={() => { setShowSearchModal(false); }}>
           <div style={{ padding: '1rem' }}>
             <Button text="1" onClick={() => { conceptContext.updateData('1'); setShowSearchModal(false); }} />
@@ -123,9 +123,12 @@ const DemoApplicationNavigationLayout = () => {
             <Button text="3" onClick={() => { conceptContext.updateData('3'); setShowSearchModal(false); }} />
           </div>
         </ApplicationModal>
-      )}
+      )} */}
       {showAppSwitcherModal && (
         <ApplicationSwitcherModal onRequestClose={() => { setShowAppSwitcherModal(false); }} />
+      )}
+      {showModuleOverrideModal && (
+        <ModuleOverrideModal onRequestClose={() => { setShowModuleOverrideModal(false); }} />
       )}
     </>
   );

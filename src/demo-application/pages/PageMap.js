@@ -1,13 +1,15 @@
 /* global __webpack_init_sharing__ __webpack_share_scopes__ */
-
 import React from 'react';
-// import TemplatePage from './TemplatePage';
-import RemotePages from '../../Pages.json';
+import PagesData from '../../config/Pages.json';
+
+// This file needs lots of clean up :/
+
+const localStorage = window.localStorage;
+const OverridePagesData = JSON.parse(localStorage.getItem('OverridePagesData')) || {};
 
 const loadRemoteScript = (url) => (
   new Promise((resolve, reject) => {
     // console.log('loadRemoteScript', url);
-    // need to only do this once per url.
     if (!url) {
       reject(new Error('No url Provided.'));
     } else {
@@ -18,7 +20,7 @@ const loadRemoteScript = (url) => (
       element.async = true;
 
       element.onload = () => {
-        // console.log(`Dynamic Script Loaded: ${url}`);
+        console.log(`Dynamic Script Loaded: ${url}`);
         element.parentNode.removeChild(element);
         resolve();
       };
@@ -50,30 +52,53 @@ const loadComponent = ({ url, scope, module }) => (
   }
 );
 
-const PagesMap = Object.entries(RemotePages).reduce((acc, [key, page]) => {
-  // console.log(key, page);
+const PagesMap = Object.entries(PagesData).reduce((acc, [key, page]) => {
   acc[key] = React.lazy(loadComponent(page));
   return acc;
 }, {});
 
-export default PagesMap;
+const OverridePagesMap = Object.entries(OverridePagesData).reduce((acc, [key, page]) => {
+  acc[key] = React.lazy(loadComponent(page));
+  return acc;
+}, {});
 
-// const MyDay = React.lazy(() => import('organizer/PatientList'));
-// const PatientSearch = React.lazy(() => import('organizer/PatientSearch'));
-// // import ChartReview from '../../chart/pages/ChartReview';
-// // import Handoff from '../../chart/pages/Handoff';
-// // import ActiveOrders from '../../chart/pages/ActiveOrders';
-// // import InactiveOrders from '../../chart/pages/InactiveOrders';
-// // import NoteTemplates from '../../chart/pages/NoteTempates';
-// // import InProgressNotes from '../../chart/pages/InProgressNotes';
+const getPage = (pageKey) => {
+  if (OverridePagesData[pageKey]) {
+    return OverridePagesMap[pageKey];
+  }
 
-// export default {
-//   MyDay,
-//   PatientSearch,
-//   ChartReview: PatientSearch,
-//   Handoff: PatientSearch,
-//   ActiveOrders: PatientSearch,
-//   InactiveOrders: PatientSearch,
-//   NoteTemplates: PatientSearch,
-//   InProgressNotes: PatientSearch,
-// };
+  return PagesMap[pageKey];
+};
+
+const getPagesData = () => Object.keys(PagesData).reduce((acc, pageKey) => {
+  if (OverridePagesData[pageKey]) {
+    acc[pageKey] = {
+      ...OverridePagesData[pageKey],
+    };
+  } else {
+    acc[pageKey] = {
+      ...PagesData[pageKey],
+    };
+  }
+  return acc;
+}, {});
+
+const setPageOverride = (pageKey, page) => {
+  OverridePagesData[pageKey] = page;
+  OverridePagesMap[pageKey] = React.lazy(loadComponent(page));
+  localStorage.setItem('OverridePagesData', JSON.stringify(OverridePagesData));
+};
+
+const removePageOverride = (pageKey) => {
+  delete OverridePagesData[pageKey];
+  delete OverridePagesMap[pageKey];
+  localStorage.setItem('OverridePagesData', JSON.stringify(OverridePagesData));
+  return PagesData[pageKey];
+};
+
+export default {
+  getPage,
+  getPagesData,
+  setPageOverride,
+  removePageOverride,
+};

@@ -19,7 +19,7 @@ const ApplicationSwitcherModal = ({ onRequestClose }) => {
   const applicationContext = React.useContext(ApplicationContext);
   const history = useHistory();
   // const hrefPrefix = '/mega-app-2/#/';
-  const hrefPrefix = '/#/';
+  const hrefPrefix = `${window.location.pathname}#/`;
   return (
     <ApplicationModal
       title="Application Switcher"

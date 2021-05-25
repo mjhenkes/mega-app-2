@@ -32,13 +32,13 @@ const NavCLayout = () => {
         renderNavigationFallback={() => <div>404</div>}
       >
         {applicationContext.current.pages.map(page => {
-          const Page = PageMap[page.page];
+          const Page = PageMap.getPage(page.page);
           return (
             <NavigationItem
               key={page.navigationKey}
               navigationKey={page.navigationKey}
               label={page.label}
-              renderPage={() => (<Page label={page.label} pageKey={page.navigationKey} />)}
+              renderPage={() => (<Page label={page.label} key={page.navigationKey} pageKey={page.navigationKey} />)}
             />
           );
         })}

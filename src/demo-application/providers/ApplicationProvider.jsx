@@ -2,7 +2,7 @@ import React from 'react';
 import {
   useLocation,
 } from 'react-router-dom';
-import applications from '../../Apps.json';
+import applications from '../../config/Apps.json';
 
 const ApplicationContext = React.createContext();
 

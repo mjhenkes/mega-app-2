@@ -2,9 +2,13 @@
 import React from 'react';
 import PagesData from '../../config/Pages.json';
 
+// const PagesData = async () => {
+//   return await fetch('Modules.json')
+// }
+
 // This file needs lots of clean up :/
 
-const localStorage = window.localStorage;
+const { localStorage } = window;
 const OverridePagesData = JSON.parse(localStorage.getItem('OverridePagesData')) || {};
 
 const loadRemoteScript = (url) => (
@@ -38,7 +42,13 @@ const loadRemoteScript = (url) => (
 const loadComponent = ({ url, scope, module }) => (
   async () => {
     // console.log(url, scope, module);
-    await loadRemoteScript(url);
+    try {
+      await loadRemoteScript(url);
+    } catch (error) {
+      const err = Error();
+      err.message = 'boom';
+      throw err;
+    }
 
     // Initializes the share scope. This fills it with known provided modules from this build and all remotes
     await __webpack_init_sharing__('default');

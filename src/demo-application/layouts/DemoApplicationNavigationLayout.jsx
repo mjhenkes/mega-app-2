@@ -9,6 +9,7 @@ import ApplicationModal from '@cerner/terra-application/lib/application-modal/Ap
 import PrimaryNavigationLayout from '@cerner/terra-application/lib/primary-navigation-layout';
 import ApplicationConceptProvider from '@cerner/terra-application/lib/application-container/ApplicationConceptProvider';
 import ModalManager from '@cerner/terra-application/lib/modal-manager';
+import ApplicationErrorBoundary from '@cerner/terra-application/lib/application-error-boundary/ApplicationErrorBoundary';
 import classNamesBind from 'classnames/bind';
 import { ConceptContext } from '../providers/ConceptProvider';
 import { ApplicationContext } from '../providers/ApplicationProvider';
@@ -36,7 +37,13 @@ const DemoApplicationNavigationLayout = () => {
     if (applicationContext.current.requiresPatientContext && !conceptContext.data) {
       return { children: <div> Choose a patient </div> };
     }
-    return { renderLayout: () => <NavLayout /> };
+    return {
+      renderLayout: () => (
+        <ApplicationErrorBoundary>
+          <NavLayout />
+        </ApplicationErrorBoundary>
+      ),
+    };
   };
 
   if (conceptContext.data) {

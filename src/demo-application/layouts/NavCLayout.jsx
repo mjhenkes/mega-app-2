@@ -4,11 +4,12 @@ import { SecondaryNavigationLayout, NavigationItem } from '@cerner/terra-applica
 
 import { ApplicationContext } from '../providers/ApplicationProvider';
 
-import PageMap from '../pages/PageMap';
+import { ModuleContext } from '../providers/ModuleProvider';
 
 const NavCLayout = () => {
   const applicationContext = React.useContext(ApplicationContext);
-  const [navigationState, setNavigationState] = React.useState(applicationContext.current.pages[0].navigationKey);
+  const moduleContext = React.useContext(ModuleContext);
+  const [navigationState, setNavigationState] = React.useState(moduleContext.pages[0].navigationKey);
 
   React.useEffect(() => {
     function handleEventNavigation(event) {
@@ -31,8 +32,8 @@ const NavCLayout = () => {
         onSelectNavigationItem={(key) => { setNavigationState(key); }}
         renderNavigationFallback={() => <div>404</div>}
       >
-        {applicationContext.current.pages.map(page => {
-          const Page = PageMap.getPage(page.page);
+        {moduleContext.pages.map(page => {
+          const Page = page.component;
           return (
             <NavigationItem
               key={page.navigationKey}

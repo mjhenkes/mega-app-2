@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { DefinePlugin } = require('webpack');
 const { merge } = require('webpack-merge');
 const { ModuleFederationPlugin } = require('webpack').container;
+const CopyPlugin = require('copy-webpack-plugin');
 
 const terraApplicationConfig = (env = {}) => ({
   entry: {
@@ -51,6 +52,11 @@ const terraApplicationConfig = (env = {}) => ({
     }),
     new DefinePlugin({
       TERRA_APPLICATION_LOCALE: JSON.stringify(env.defaultLocale || 'en'),
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: 'src/config', to: 'config' },
+      ],
     }),
   ],
 });

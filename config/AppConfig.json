@@ -1,0 +1,114 @@
+{
+  "applications": {
+    "organizer": {
+      "id": "organizer",
+      "title": "Organizer",
+      "version": "0.0.0",
+      "route": "organizer",
+      "requiresPatientContext": false,
+      "modules": {
+        "pages": [
+          {
+            "navigationKey": "my-day",
+            "label": "My Day",
+            "moduleKey": "MyDay"
+          }, {
+              "navigationKey": "patient-search",
+              "label": "Patient Search",
+              "moduleKey": "PatientSearch"
+          }
+        ]
+      }
+    },
+    "chart": {
+      "id": "chart",
+      "title": "Chart",
+      "version": "0.0.1",
+      "route": "chart",
+      "requiresPatientContext": true,
+      "modules": {
+        "pages": [
+          {
+            "navigationKey": "chart-review",
+            "label": "Chart Review",
+            "moduleKey": "ChartReview"
+          }, {
+              "navigationKey": "handoff",
+              "label": "Handoff",
+              "moduleKey": "Handoff"
+          }, {
+            "navigationKey": "active-orders",
+            "label": "Active Orders",
+            "moduleKey": "ActiveOrders"
+          }, {
+            "navigationKey": "inactive-orders",
+            "label": "Inactive Orders",
+            "moduleKey": "InactiveOrders"
+          }, {
+            "navigationKey": "note-templates",
+            "label": "Note Templates",
+            "moduleKey": "NoteTemplates"
+          }, {
+            "navigationKey": "in-progress-notes",
+            "label": "In Progress Notes",
+            "moduleKey": "InProgressNotes"
+          }
+        ]
+      }
+    }
+  },
+  "modules": {
+    "pages": {
+      "MyDay": {
+        "url": "https://mjhenkes.github.io/organizer-container/remoteEntry.js",
+        "scope": "organizer",
+        "module": "./PatientList"
+
+      },
+      "PatientSearch": {
+        "url": "https://mjhenkes.github.io/organizer-container/remoteEntry.js",
+        "scope": "organizer",
+        "module": "./PatientSearch"
+      },
+      "ChartReview": {
+        "url": "https://mjhenkes.github.io/chart-container/remoteEntry.js",
+        "scope": "chart",
+        "module": "./ChartReview"
+      },
+      "Handoff": {
+        "url": "https://mjhenkes.github.io/chart-container/remoteEntry.js",
+        "scope": "chart",
+        "module": "./Handoff"
+      },
+      "ActiveOrders": {
+        "url": "https://mjhenkes.github.io/chart-container/remoteEntry.js",
+        "scope": "chart",
+        "module": "./ActiveOrders"
+      },
+      "InactiveOrders": {
+        "url": "https://mjhenkes.github.io/chart-container/remoteEntry.js",
+        "scope": "chart",
+        "module": "./InactiveOrders"
+      },
+      "NoteTemplates": {
+        "url": "https://mjhenkes.github.io/chart-container/remoteEntry.js",
+        "scope": "chart",
+        "module": "./NoteTemplates"
+      },
+      "InProgressNotes": {
+        "url": "https://mjhenkes.github.io/chart-container/remoteEntry.js",
+        "scope": "chart",
+        "module": "./InProgressNotes"
+      }
+    },
+    "workspaceItems": {
+
+    },
+    "extensions": {
+
+    },
+    "workflowSummaryItems": {
+
+    }
+  }
+}

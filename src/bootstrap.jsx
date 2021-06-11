@@ -1,19 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter } from 'react-router-dom';
-
-import '@cerner/terra-application/lib/application-container';
-import '@cerner/terra-application/lib/page'; // Required for our current implementation of module federation.
-
-import ApplicationProvider from './demo-application/providers/ApplicationProvider';
-
-import Application from './Application';
+import ApplicationHarness from 'application-harness';
 
 ReactDOM.render(
-  <HashRouter>
-    <ApplicationProvider>
-      <Application />
-    </ApplicationProvider>
-  </HashRouter>,
+  <ApplicationHarness />,
   document.getElementById('root'),
 );

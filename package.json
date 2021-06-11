@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "@cerner/terra-application": "cerner/terra-application#869470a0cc93cb4eb4e3494ebe543c4405441ca4",
+    "application-harness": "mjhenkes/application-harness#main",
     "prop-types": "^15.7.2",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
